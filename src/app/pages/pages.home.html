@@ -1,0 +1,72 @@
+<ng-template [ngIf]="!isDataLoaded && !hasErrors">
+  <div class="searchWrapper">
+    <mat-card class="searchCard">
+      <form #userName="ngForm" (ngSubmit)="onClickSubmit(userName.value)"> 
+        <mat-form-field class="userSearchBar">
+          <mat-label>User Search</mat-label>
+          <input matInput type="text" name="username" placeholder="Enter Email, phone, or social profile URL" ngModel>
+        </mat-form-field> 
+        <br/> 
+        <button mat-button color="primary">Lookup User</button>
+      </form>
+    </mat-card>
+  </div>
+
+</ng-template>  
+
+<ng-template [ngIf]="isDataLoaded && !hasErrors">
+  <div class='userContainer'>
+    <mat-card class='userCard'>
+      <div class="userInfoWrapper">
+        <div>
+          <div class="infoItem">
+            <div class="itemTitle">Name:</div> <span>{{ profile.name }}</span>
+          </div>  
+
+          <div class="infoItem">
+            <div class="itemTitle">Occupation:</div> 
+            <span *ngIf="profile.title && profile.organization; else noOccupation">{{ profile.title }} at {{ profile.organization }}</span>
+            <ng-template #noOccupation>
+              no occupation found.
+            </ng-template>  
+          </div>
+          
+            
+          <div class="infoItem">
+            <div class="itemTitle">Phones:</div>
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let phone of profile.phones">{{ phone }}</mat-list-item>
+            </mat-list>
+          </div>  
+          
+          
+          <div class="infoItem">
+            <div class="itemTitle">Emails:</div>
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let email of profile.emails">{{ email }}</mat-list-item>
+            </mat-list>
+          </div> 
+          
+          <div class="infoItem">
+            <div class="itemTitle">Social Media Profiles:</div>
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let profile of profile.profiles ">{{ profile.service }}: {{ profile.url}} </mat-list-item>
+            </mat-list>
+          </div>
+  
+        </div>
+      </div>
+
+      <div class="photoWrapper"> <img src="{{ profile.avatar }}" alt="Girl in a jacket" width="150" height="200"> </div>
+      
+      <div><button mat-button color="primary" (click)="goBackButtonClick()">Go Back</button></div>
+    </mat-card>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="hasErrors">
+  <div class="errorWrapper">Opps! An error has happened:
+    <p>{{errorMsg}}</p>
+    <button mat-button color="primary" (click)="goBackButtonClick()">Go Back</button>
+  </div>
+</ng-template>

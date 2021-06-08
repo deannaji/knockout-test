@@ -1,0 +1,41 @@
+.searchWrapper {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 25px;
+    width: 70%;
+}
+
+.userSearchBar {
+    width: 40%;
+}
+
+.userContainer {
+    margin: 10%;
+}
+
+.userCard {
+    width: 100%;
+    padding: 5%;
+}
+
+.userInfoWrapper {
+    display: inline-flex;
+}
+
+.photoWrapper {
+    display: inline-flex;
+    float:right;
+}
+
+.infoItem {
+    margin-bottom: 25px;
+}
+
+.itemTitle {
+    font-size: larger;
+    font-weight:500;
+}
+
+.errorWrapper {
+    margin: 3%;
+}
